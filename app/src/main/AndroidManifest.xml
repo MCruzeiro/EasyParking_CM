@@ -9,7 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EasyParking">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.main.Pesquisa"></activity>
+        <activity
+            android:name=".Pesquisa"
+            android:label="@string/title_activity_pesquisa"
+            android:theme="@style/Theme.EasyParking.NoActionBar" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
