@@ -1,4 +1,4 @@
-package ipvc.estg.easyparking.ui.main
+package ipvc.estg.easyparking
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
