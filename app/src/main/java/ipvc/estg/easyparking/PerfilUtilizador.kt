@@ -8,4 +8,7 @@ class PerfilUtilizador : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_perfil_utilizador)
     }
+
+    fun Search(view: android.view.View) {}
+    fun Back(view: android.view.View) {}
 }

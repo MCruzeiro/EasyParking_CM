@@ -92,4 +92,49 @@
         android:textSize="38dp"
         android:textColor="@color/black"/>
 
+    <LinearLayout
+        android:id="@+id/toolbar"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:background="@color/black"
+        android:paddingTop="1dp"
+        android:layout_height="40dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_margin="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="Back"
+            android:src="@drawable/back"/>
+
+        <ImageView
+            android:layout_margin="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="Search"
+            android:src="@drawable/search"/>
+
+        <ImageView
+            android:layout_margin="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:src="@drawable/avatar"/>
+
+    </LinearLayout>
+    </LinearLayout>
+
+
 </RelativeLayout>
