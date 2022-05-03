@@ -1,0 +1,24 @@
+<resources>
+    <!--
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=83:AE:0E:FB:BD:13:DA:54:C6:DD:04:FB:F6:93:B2:C3:4D:49:41:4E%3Bipvc.estg.easyparking
+
+    You can also add your credentials to an existing key, using these values:
+
+    Package name:
+    ipvc.estg.easyparking
+
+    SHA-1 certificate fingerprint:
+    83:AE:0E:FB:BD:13:DA:54:C6:DD:04:FB:F6:93:B2:C3:4D:49:41:4E
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyB8qneeFa3wwsPTgKCWW2w8nfluWBh-ssw</string>
+</resources>
