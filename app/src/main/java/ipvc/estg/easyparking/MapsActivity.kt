@@ -59,6 +59,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             override fun onLocationResult(p0: LocationResult) {
                 super.onLocationResult(p0)
                 lastLocation = p0.lastLocation
+
                 var loc = LatLng(lastLocation.latitude, lastLocation.longitude)
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 15.0f))
                 val address = getAddress(lastLocation.latitude, lastLocation.longitude)
@@ -86,9 +87,37 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
-         val sydney = LatLng(41.6946, -8.83016)
-         mMap.addMarker(MarkerOptions().position(sydney).title("Parque 1"))
-         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val p1 = LatLng(41.6946, -8.83016)
+        mMap.addMarker(MarkerOptions().position(p1).title("Parque Estacionamento Gil Eanes"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(p1))
+
+        val p2 = LatLng(41.691002, -8.828173)
+        mMap.addMarker(MarkerOptions().position(p2).title("Parque de Estacionamento Avenida"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(p2))
+
+        val p3 = LatLng(41.695546, -8.828924)
+        mMap.addMarker(MarkerOptions().position(p3).title("Parque de estacionamento 1º de Maio"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(p3))
+
+        val p4 = LatLng(41.691765, -8.838676)
+        mMap.addMarker(MarkerOptions().position(p4).title("Parque de Estacionamento Campo da Agonia"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(p4))
+
+        val p5 = LatLng(41.696037, -8.822682)
+        mMap.addMarker(MarkerOptions().position(p5).title("Parque Estacionamento Afonso III"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(p5))
+
+        val p6 = LatLng(41.696763, -8.831194)
+        mMap.addMarker(MarkerOptions().position(p6).title("Parque Magma"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(p6))
+
+        val p7 = LatLng(41.695049, -8.825733)
+        mMap.addMarker(MarkerOptions().position(p7).title("Parque do Mercado"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(p7))
+
+        val p8 = LatLng(41.698397, -8.831994)
+        mMap.addMarker(MarkerOptions().position(p8).title("Parque do Ulsam"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(p8))
 
        /* val request = ServiceBuilder.buildService(EndPoints::class.java)
         val call = request.getUsers()
