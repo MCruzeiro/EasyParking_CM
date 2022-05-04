@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EasyParking</string>
+    <string name="destinosfav">Destinos favoritos</string>
+    <string name="title_activity_maps2">Mapa</string>
+    <string name="title_activity_maps">Mapa</string>
+</resources>

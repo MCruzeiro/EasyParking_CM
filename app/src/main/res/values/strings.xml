@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">EasyParking</string>
     <string name="title_activity_maps2">Map</string>
+    <string name="destinosfav">Favorite Destinations</string>
 </resources>

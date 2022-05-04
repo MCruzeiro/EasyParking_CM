@@ -87,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/llUtilizador"
-        android:text="Destinos favoritos"
+        android:text="@string/destinosfav"
         android:layout_centerHorizontal="true"
         android:textSize="38dp"
         android:textColor="@color/black"/>
