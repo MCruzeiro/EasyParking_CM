@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.os.Looper
 import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -17,6 +18,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import ipvc.estg.easyparking.api.EndPoints
 import ipvc.estg.easyparking.api.ServiceBuilder
@@ -26,7 +28,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
@@ -142,6 +144,32 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
             }
         }) */
+        // Set a listener for marker click.
+        mMap.setOnMarkerClickListener(this)
+    }
+
+
+    /** Called when the user clicks a marker.  */
+     override fun onMarkerClick(marker: Marker): Boolean {
+
+        // Retrieve the data from the marker.
+        val clickCount = marker.tag as? Int
+
+        // Check if a click count was set, then display the click count.
+        clickCount?.let {
+            val newClickCount = it + 1
+            marker.tag = newClickCount
+            Toast.makeText(
+                this,
+                "${marker.title} has been clicked $newClickCount times.",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
+        // Return false to indicate that we have not consumed the event and that we wish
+        // for the default behavior to occur (which is for the camera to move such that the
+        // marker is centered and for the marker's info window to open, if it has one).
+        return false
     }
 
     override fun onPause() {
@@ -183,6 +211,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 // distance in meter
         return results[0]
     }
+
     fun Back(view: android.view.View) {}
     fun Perfil(view: android.view.View) {
         val intent = Intent(this, PerfilUtilizador::class.java).apply {
