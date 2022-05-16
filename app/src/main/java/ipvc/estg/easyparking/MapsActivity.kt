@@ -4,15 +4,14 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
-import com.google.android.gms.location.*
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-
+import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -20,13 +19,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import ipvc.estg.easyparking.api.EndPoints
-import ipvc.estg.easyparking.api.ServiceBuilder
-import ipvc.estg.easyparking.api.User
 import ipvc.estg.easyparking.databinding.ActivityMapsBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMapReadyCallback {
 
@@ -145,6 +138,7 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
             }
         }) */
         // Set a listener for marker click.
+        // adding on click listener to marker of google maps.
         mMap.setOnMarkerClickListener(this)
     }
 
@@ -152,23 +146,18 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
     /** Called when the user clicks a marker.  */
      override fun onMarkerClick(marker: Marker): Boolean {
 
-        // Retrieve the data from the marker.
-        val clickCount = marker.tag as? Int
+        // on marker click we are getting the title of our marker
+        // which is clicked and displaying it in a toast message.
+        var markerName = marker.title
 
-        // Check if a click count was set, then display the click count.
-        clickCount?.let {
-            val newClickCount = it + 1
-            marker.tag = newClickCount
-            Toast.makeText(
-                this,
-                "${marker.title} has been clicked $newClickCount times.",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
+        //Toast.makeText(this, "Clicked location is " + markerName, Toast.LENGTH_SHORT).show()
 
-        // Return false to indicate that we have not consumed the event and that we wish
-        // for the default behavior to occur (which is for the camera to move such that the
-        // marker is centered and for the marker's info window to open, if it has one).
+        val cc : com.google.android.material.card.MaterialCardView = findViewById<com.google.android.material.card.MaterialCardView>(R.id.cardLocalonMap)
+        cc.setVisibility(com.google.android.material.card.MaterialCardView.VISIBLE)
+
+        var parque : TextView = findViewById<TextView>(R.id.descrDestinoOnMap)
+        parque.setText(markerName)
+
         return false
     }
 
@@ -217,5 +206,14 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
         val intent = Intent(this, PerfilUtilizador::class.java).apply {
         }
         startActivity(intent)
+    }
+
+    fun direcoesClick(view: android.view.View) {
+        //Direçoes
+    }
+
+    fun fecharClick(view: android.view.View) {
+        val c1 : com.google.android.material.card.MaterialCardView = findViewById<com.google.android.material.card.MaterialCardView>(R.id.cardLocalonMap)
+        c1.setVisibility(com.google.android.material.card.MaterialCardView.GONE)
     }
 }

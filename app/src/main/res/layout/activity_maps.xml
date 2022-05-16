@@ -15,6 +15,156 @@
         android:layout_height="match_parent"
         tools:context=".MapsActivity" />
 
+    <com.google.android.material.card.MaterialCardView
+        android:visibility="gone"
+        android:layout_margin="15dp"
+        android:id="@+id/cardLocalonMap"
+        card_view:strokeWidth="4dp"
+        android:layout_centerInParent="true"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        card_view:cardCornerRadius="25dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imagemOnMap"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:src="@drawable/prq1" />
+
+        <TextView
+            android:layout_below="@id/imagemOnMap"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/localDestinoOnMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:text="Viana do Castelo"/>
+
+            <TextView
+                android:layout_below="@+id/localDestinoOnMap"
+                android:layout_alignStart="@+id/localDestinoOnMap"
+                android:id="@+id/descrDestinoOnMap"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="Parque1"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_below="@id/imagemOnMap"
+                android:layout_marginTop="15dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="90dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+             <TextView
+                 android:background="@color/teal_200"
+                 android:id="@+id/precoOnMap"
+                 android:textAlignment="center"
+                 android:layout_width="50dp"
+                 android:layout_height="wrap_content"
+                 android:text="2$"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/descrDestinoOnMap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <com.google.android.material.card.MaterialCardView
+                    card_view:strokeColor="@color/black"
+                    card_view:strokeWidth="1dp"
+                    app:cardCornerRadius="7dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="100dp"
+                    android:layout_height="90dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    <TextView
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/Det"
+                        android:textSize="15dp"
+                        android:layout_marginTop="3dp"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Detalhes" />
+                    <TextView
+                        android:id="@+id/caracteristicasOnMap"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@id/Det"
+                        android:textAlignment="center"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:text="Pago,...."/>
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    card_view:strokeColor="@color/black"
+                    card_view:strokeWidth="1dp"
+                    app:cardCornerRadius="7dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="100dp"
+                    android:layout_height="90dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_centerHorizontal="true"
+                            android:id="@+id/horaOnMap"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:text="Fecha ás 22h" />
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_height="wrap_content">
+            <Button
+                android:layout_margin="3dp"
+                android:layout_weight="15"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:onClick="direcoesClick"
+                android:text="Direções"/>
+
+            <Button
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FF0000"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:onClick="fecharClick"
+                android:text="Sair"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
     <LinearLayout
         android:id="@+id/toolbar"
         android:layout_alignParentBottom="true"
