@@ -20,6 +20,12 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import ipvc.estg.easyparking.databinding.ActivityMapsBinding
+import ipvc.estg.easyparking.api.EndPoints
+import ipvc.estg.easyparking.api.ServiceBuilder
+import ipvc.estg.easyparking.api.User
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMapReadyCallback {
 
@@ -114,9 +120,12 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
         mMap.addMarker(MarkerOptions().position(p8).title("Parque do Ulsam"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(p8))
 
-       /* val request = ServiceBuilder.buildService(EndPoints::class.java)
+
+        /*
+        val request = ServiceBuilder.buildService(EndPoints::class.java)
         val call = request.getUsers()
         var position: LatLng
+
         call.enqueue(object : Callback<List<User>> {
             override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
                 if (response.isSuccessful) {
@@ -128,15 +137,18 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
                         )
                         mMap.addMarker(
                             MarkerOptions().position(position).title(
-                                user.address.suite + " - " + user . address . city))
+                                user.address.suite + " - " + user.address.city))
                     }
                 }
             }
 
             override fun onFailure(call: Call<List<User>>, t: Throwable) {
-
+                    Toast.makeText(this@MapsActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+                Log.d("****", "${t.message}")
             }
-        }) */
+        })
+        */
+
         // Set a listener for marker click.
         // adding on click listener to marker of google maps.
         mMap.setOnMarkerClickListener(this)
