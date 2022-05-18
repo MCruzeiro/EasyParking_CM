@@ -56,4 +56,8 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-maps:18.0.0'
     implementation 'com.google.android.gms:play-services-location:19.0.0'
+
+    //routes
+    implementation 'com.github.jd-alexander:library:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
 }

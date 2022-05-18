@@ -7,27 +7,23 @@ import android.location.Location
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import com.directions.route.*
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
+import com.google.android.material.snackbar.Snackbar
 import ipvc.estg.easyparking.databinding.ActivityMapsBinding
-import ipvc.estg.easyparking.api.EndPoints
-import ipvc.estg.easyparking.api.ServiceBuilder
-import ipvc.estg.easyparking.api.User
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMapReadyCallback {
+
+class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMapReadyCallback, RoutingListener {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
@@ -40,6 +36,10 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
     //added to implement distance between two locations
     private var continenteLat: Double = 0.0
     private var continenteLong: Double = 0.0
+
+    //current maker
+    var end = LatLng(0.0,0.0)
+    private var polylines: List<Polyline>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -162,6 +162,8 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
         // which is clicked and displaying it in a toast message.
         var markerName = marker.title
 
+
+        end= LatLng(marker.position.latitude, marker.position.longitude)
         //Toast.makeText(this, "Clicked location is " + markerName, Toast.LENGTH_SHORT).show()
 
         val cc : com.google.android.material.card.MaterialCardView = findViewById<com.google.android.material.card.MaterialCardView>(R.id.cardLocalonMap)
@@ -221,11 +223,82 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
     }
 
     fun direcoesClick(view: android.view.View) {
+        val c1 : com.google.android.material.card.MaterialCardView = findViewById<com.google.android.material.card.MaterialCardView>(R.id.cardLocalonMap)
+        c1.setVisibility(com.google.android.material.card.MaterialCardView.GONE)
+
+
         //Direçoes
+        var start = LatLng(lastLocation.latitude, lastLocation.longitude)
+
+        val routing = Routing.Builder()
+            .travelMode(AbstractRouting.TravelMode.DRIVING)
+            .withListener(this)
+            .alternativeRoutes(true)
+            .waypoints(start, end)
+            .key("AIzaSyBptSXcDUVMIfdP8PLuFxhJuWnVnYEySgU") //also define your api key here.
+            .build()
+        routing.execute()
+    }
+
+    //Routing call back functions.
+    override fun onRoutingFailure(e: RouteException) {
+        val parentLayout: View = findViewById(android.R.id.content)
+        val snackbar: Snackbar = Snackbar.make(parentLayout, e.toString(), Snackbar.LENGTH_LONG)
+        snackbar.show()
+    }
+
+    override fun onRoutingStart() {
+        Toast.makeText(this,"Calculando rota...", Toast.LENGTH_LONG).show()
     }
 
     fun fecharClick(view: android.view.View) {
         val c1 : com.google.android.material.card.MaterialCardView = findViewById<com.google.android.material.card.MaterialCardView>(R.id.cardLocalonMap)
         c1.setVisibility(com.google.android.material.card.MaterialCardView.GONE)
+    }
+
+    //If Route finding success..
+    override fun onRoutingSuccess(route: ArrayList<Route>, shortestRouteIndex: Int) {
+        var start = LatLng(lastLocation.latitude, lastLocation.longitude)
+        val center = CameraUpdateFactory.newLatLng(start)
+        val zoom = CameraUpdateFactory.zoomTo(16f)
+        if (polylines != null) {
+            polylines = ArrayList()
+        }
+        val polyOptions = PolylineOptions()
+        var polylineStartLatLng: LatLng? = null
+        var polylineEndLatLng: LatLng? = null
+        polylines = ArrayList()
+        //add route(s) to the map using polyline
+        for (i in 0 until route.size) {
+            if (i == shortestRouteIndex) {
+                polyOptions.color(resources.getColor(android.R.color.black))
+                polyOptions.width(7f)
+                polyOptions.addAll(route[shortestRouteIndex].getPoints())
+                val polyline = mMap.addPolyline(polyOptions)
+                polylineStartLatLng = polyline.points[0]
+                val k = polyline.points.size
+                polylineEndLatLng = polyline.points[k - 1]
+                (polylines as ArrayList<Polyline>).add(polyline)
+            } else {
+            }
+        }
+
+        /*
+        //Add Marker on route starting position
+        val startMarker = MarkerOptions()
+        startMarker.position(polylineStartLatLng!!)
+        startMarker.title("My Location")
+        mMap.addMarker(startMarker)
+
+        //Add Marker on route ending position
+        val endMarker = MarkerOptions()
+        endMarker.position(polylineEndLatLng!!)
+        endMarker.title("Destination")
+        mMap.addMarker(endMarker)
+        */
+    }
+
+    override fun onRoutingCancelled() {
+        TODO("Not yet implemented")
     }
 }
