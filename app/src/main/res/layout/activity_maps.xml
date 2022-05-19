@@ -16,6 +16,33 @@
         tools:context=".MapsActivity" />
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/filterButton"
+        android:layout_margin="10dp"
+        android:clickable="true"
+        android:onClick="filtrosClick"
+        android:layout_alignParentRight="true"
+        app:strokeColor="@color/black"
+        app:strokeWidth="1dp"
+        android:layout_width="51dp"
+        android:layout_height="51dp">
+        <ImageView
+            android:padding="4dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/search"/>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- CARD DOS FILTROS-->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/filterCard"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="40dp"
+        android:visibility="gone"
+        android:layout_height="match_parent">
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
         android:visibility="gone"
         android:layout_margin="15dp"
         android:id="@+id/cardLocalonMap"
@@ -208,4 +235,5 @@
 
         </LinearLayout>
     </LinearLayout>
+
 </RelativeLayout>

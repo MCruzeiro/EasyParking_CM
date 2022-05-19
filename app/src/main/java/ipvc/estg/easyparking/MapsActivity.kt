@@ -2,6 +2,7 @@ package ipvc.estg.easyparking
 
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
@@ -34,12 +35,13 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
     private lateinit var  lastLocation : Location
 
     //added to implement distance between two locations
-    private var continenteLat: Double = 0.0
-    private var continenteLong: Double = 0.0
+    var firstlocLat: Double = 0.0
+    var firstlocLong: Double = 0.0
 
     //current maker
     var end = LatLng(0.0,0.0)
     private var polylines: List<Polyline>? = null
+    var me = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,8 +64,14 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
                 lastLocation = p0.lastLocation
 
                 var loc = LatLng(lastLocation.latitude, lastLocation.longitude)
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 15.0f))
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 17.0f))
                 val address = getAddress(lastLocation.latitude, lastLocation.longitude)
+                if(me == 0){
+                    me++
+                    firstlocLat = lastLocation.latitude
+                    firstlocLong = lastLocation.longitude
+                    mMap.addCircle(CircleOptions().center(LatLng(firstlocLat,firstlocLong)).radius(5.0).strokeColor(Color.BLACK).fillColor(Color.BLUE))
+                }
             }
         }
     }
@@ -71,7 +79,7 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
     private fun createLocationRequest() {
         locationRequest = LocationRequest()
 // interval specifies the rate at which your app will like to receive updates.
-        locationRequest.interval = 10000
+        locationRequest.interval = 100000
         locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
     }
 
@@ -85,40 +93,36 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
      * installed Google Play services and returned to the app.
      */
     override fun onMapReady(googleMap: GoogleMap) {
+        addMarker(googleMap)
+    }
+
+    private fun  addMarker(googleMap: GoogleMap){
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
         val p1 = LatLng(41.6946, -8.83016)
         mMap.addMarker(MarkerOptions().position(p1).title("Parque Estacionamento Gil Eanes"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(p1))
 
         val p2 = LatLng(41.691002, -8.828173)
         mMap.addMarker(MarkerOptions().position(p2).title("Parque de Estacionamento Avenida"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(p2))
 
         val p3 = LatLng(41.695546, -8.828924)
         mMap.addMarker(MarkerOptions().position(p3).title("Parque de estacionamento 1º de Maio"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(p3))
 
         val p4 = LatLng(41.691765, -8.838676)
         mMap.addMarker(MarkerOptions().position(p4).title("Parque de Estacionamento Campo da Agonia"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(p4))
 
         val p5 = LatLng(41.696037, -8.822682)
         mMap.addMarker(MarkerOptions().position(p5).title("Parque Estacionamento Afonso III"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(p5))
 
         val p6 = LatLng(41.696763, -8.831194)
         mMap.addMarker(MarkerOptions().position(p6).title("Parque Magma"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(p6))
 
         val p7 = LatLng(41.695049, -8.825733)
         mMap.addMarker(MarkerOptions().position(p7).title("Parque do Mercado"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(p7))
 
         val p8 = LatLng(41.698397, -8.831994)
         mMap.addMarker(MarkerOptions().position(p8).title("Parque do Ulsam"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(p8))
 
 
         /*
@@ -154,7 +158,6 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
         mMap.setOnMarkerClickListener(this)
     }
 
-
     /** Called when the user clicks a marker.  */
      override fun onMarkerClick(marker: Marker): Boolean {
 
@@ -168,6 +171,9 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
 
         val cc : com.google.android.material.card.MaterialCardView = findViewById<com.google.android.material.card.MaterialCardView>(R.id.cardLocalonMap)
         cc.setVisibility(com.google.android.material.card.MaterialCardView.VISIBLE)
+
+        val c2 : com.google.android.material.card.MaterialCardView = findViewById<com.google.android.material.card.MaterialCardView>(R.id.filterButton)
+        c2.setVisibility(com.google.android.material.card.MaterialCardView.GONE)
 
         var parque : TextView = findViewById<TextView>(R.id.descrDestinoOnMap)
         parque.setText(markerName)
@@ -226,6 +232,9 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
         val c1 : com.google.android.material.card.MaterialCardView = findViewById<com.google.android.material.card.MaterialCardView>(R.id.cardLocalonMap)
         c1.setVisibility(com.google.android.material.card.MaterialCardView.GONE)
 
+        val c2 : com.google.android.material.card.MaterialCardView = findViewById<com.google.android.material.card.MaterialCardView>(R.id.filterButton)
+        c2.setVisibility(com.google.android.material.card.MaterialCardView.VISIBLE)
+
 
         //Direçoes
         var start = LatLng(lastLocation.latitude, lastLocation.longitude)
@@ -254,15 +263,21 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
     fun fecharClick(view: android.view.View) {
         val c1 : com.google.android.material.card.MaterialCardView = findViewById<com.google.android.material.card.MaterialCardView>(R.id.cardLocalonMap)
         c1.setVisibility(com.google.android.material.card.MaterialCardView.GONE)
+
+        val c2 : com.google.android.material.card.MaterialCardView = findViewById<com.google.android.material.card.MaterialCardView>(R.id.filterButton)
+        c2.setVisibility(com.google.android.material.card.MaterialCardView.VISIBLE)
     }
 
     //If Route finding success..
     override fun onRoutingSuccess(route: ArrayList<Route>, shortestRouteIndex: Int) {
         var start = LatLng(lastLocation.latitude, lastLocation.longitude)
-        val center = CameraUpdateFactory.newLatLng(start)
-        val zoom = CameraUpdateFactory.zoomTo(16f)
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(start, 17.0f))
         if (polylines != null) {
-            polylines = ArrayList()
+            mMap.clear()
+            addMarker(mMap)
+            mMap.addCircle(CircleOptions().center(LatLng(firstlocLat,firstlocLong)).radius(5.0).strokeColor(Color.BLACK).fillColor(Color.BLUE))
+            var emptypolylines: List<Polyline>? = null
+            polylines = emptypolylines
         }
         val polyOptions = PolylineOptions()
         var polylineStartLatLng: LatLng? = null
@@ -271,7 +286,7 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
         //add route(s) to the map using polyline
         for (i in 0 until route.size) {
             if (i == shortestRouteIndex) {
-                polyOptions.color(resources.getColor(android.R.color.black))
+                polyOptions.color(resources.getColor(android.R.color.holo_blue_dark))
                 polyOptions.width(7f)
                 polyOptions.addAll(route[shortestRouteIndex].getPoints())
                 val polyline = mMap.addPolyline(polyOptions)
@@ -300,5 +315,10 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
 
     override fun onRoutingCancelled() {
         TODO("Not yet implemented")
+    }
+
+    fun filtrosClick(view: android.view.View) {
+        val c1 : com.google.android.material.card.MaterialCardView = findViewById<com.google.android.material.card.MaterialCardView>(R.id.filterCard)
+        c1.setVisibility(com.google.android.material.card.MaterialCardView.VISIBLE)
     }
 }
