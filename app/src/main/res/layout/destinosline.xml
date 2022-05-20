@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_margin="30dp"
+        app:cardCornerRadius="20dp"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <TextView
+            android:layout_margin="10dp"
+            android:id="@+id/localDestino"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:text="Viana do Castelo"/>
+
+        <TextView
+            android:layout_below="@+id/localDestino"
+            android:layout_alignStart="@+id/localDestino"
+            android:id="@+id/descrDestino"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="Parque1"/>
+
+            <ImageView
+                android:id="@+id/imagemDestino"
+                android:layout_alignParentRight="true"
+                android:layout_width="100dp"
+                android:layout_margin="10dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/prq1"/>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
