@@ -177,7 +177,47 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
         end= LatLng(marker.position.latitude, marker.position.longitude)
         //Toast.makeText(this, "Clicked location is " + markerName, Toast.LENGTH_SHORT).show()
 
+        /*
+        val request = ServiceBuilder.buildService(EndPoints::class.java)
+        val call = request.getParques()
+        var nome = "nada"
+        call.enqueue(object : Callback<List<Parque>> {
+            override fun onResponse(call: Call<List<Parque>>, response: Response<List<Parque>>) {
+                if (response.isSuccessful) {
+                    val parques = response.body()!!
+                    for (parque in parques) {
+                        if(parque.id.toString().toInt()===marker.id.toInt()){
+                            nome= parque.nome_parque
+                        }
+                    }
+                    Log.d("****", nome)
+                }
+            }
 
+            override fun onFailure(call: Call<List<Parque>>, t: Throwable) {
+                Toast.makeText(this@MapsActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+                Log.d("****", "${t.message}")
+            }
+        })
+
+////////////////////////////////////////////////////OUTRO EXEMPLO
+        val request = ServiceBuilder.buildService(EndPoints::class.java)
+        val call = request.getUserById(4) // estaticamente o valor 2. deverá depois passar a ser dinamico
+
+        call.enqueue(object : Callback<User>{
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                if (response.isSuccessful){
+                    val c: User = response.body()!!
+                    Toast.makeText(this@MainActivity, c.email, Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+          */
 
         val cc : com.google.android.material.card.MaterialCardView = findViewById<com.google.android.material.card.MaterialCardView>(R.id.cardLocalonMap)
         cc.setVisibility(com.google.android.material.card.MaterialCardView.VISIBLE)
