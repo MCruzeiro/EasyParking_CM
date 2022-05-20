@@ -6,14 +6,17 @@ import retrofit2.http.Path
 
 interface EndPoints {
 
-    @GET("/utilizadores/")
+    @GET("utilizadores")
     fun getUsers(): Call<List<User>>
 
-    @GET("/utilizadores/{id}")
-    fun getUserById(@Path("id") id: Int): Call<User>
+    @GET("utilizadores/{cod_utilizador}")
+    fun getUserById(@Path("cod_utilizador") cod_utilizador: String): Call<User>
 
-    @GET("/parques/")
+    @GET("parques")
     fun getParques(): Call<List<Parque>>
+
+    @GET("parques/{id}")
+    fun getParqueById(@Path("id") id: Int): Call<Parque>
 
 }
 

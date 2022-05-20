@@ -1,9 +1,13 @@
 package ipvc.estg.easyparking.api
 
 data class Parque(
-    val id: Int,
-    val name: String,
-    val lat: String,
-    val lng: String
+    val id: String,
+    val nome_parque: String,
+    val latitude: String,
+    val longitude: String,
+    val pago: String,
+    val subterraneo: String,
+    val abertoDiaInteiro: String,
+    val incapacidade: String,
 )
 

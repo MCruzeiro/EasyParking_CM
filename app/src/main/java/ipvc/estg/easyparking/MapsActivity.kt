@@ -21,7 +21,13 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.android.material.snackbar.Snackbar
+import ipvc.estg.easyparking.api.EndPoints
+import ipvc.estg.easyparking.api.Parque
+import ipvc.estg.easyparking.api.ServiceBuilder
 import ipvc.estg.easyparking.databinding.ActivityMapsBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMapReadyCallback, RoutingListener {
@@ -99,6 +105,7 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
     private fun  addMarker(googleMap: GoogleMap){
         mMap = googleMap
 
+        /*
         // Add a marker in Sydney and move the camera
         val p1 = LatLng(41.6946, -8.83016)
         mMap.addMarker(MarkerOptions().position(p1).title("Parque Estacionamento Gil Eanes"))
@@ -123,35 +130,36 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
 
         val p8 = LatLng(41.698397, -8.831994)
         mMap.addMarker(MarkerOptions().position(p8).title("Parque do Ulsam"))
+        */
 
 
-        /*
+
         val request = ServiceBuilder.buildService(EndPoints::class.java)
-        val call = request.getUsers()
+        val call = request.getParques()
         var position: LatLng
 
-        call.enqueue(object : Callback<List<User>> {
-            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+        call.enqueue(object : Callback<List<Parque>> {
+            override fun onResponse(call: Call<List<Parque>>, response: Response<List<Parque>>) {
                 if (response.isSuccessful) {
-                    val users = response.body()!!
-                    for (user in users) {
+                    val parques = response.body()!!
+                    for (parque in parques) {
                         position = LatLng(
-                            user.address.geo.lat.toString().toDouble(),
-                            user.address.geo.lng.toString().toDouble()
+                            parque.latitude.toString().toDouble(),
+                            parque.longitude.toString().toDouble()
                         )
                         mMap.addMarker(
                             MarkerOptions().position(position).title(
-                                user.address.suite + " - " + user.address.city))
+                                parque.nome_parque))
                     }
                 }
             }
 
-            override fun onFailure(call: Call<List<User>>, t: Throwable) {
+            override fun onFailure(call: Call<List<Parque>>, t: Throwable) {
                     Toast.makeText(this@MapsActivity, "${t.message}", Toast.LENGTH_SHORT).show()
                 Log.d("****", "${t.message}")
             }
         })
-        */
+
 
         // Set a listener for marker click.
         // adding on click listener to marker of google maps.
@@ -168,6 +176,8 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
 
         end= LatLng(marker.position.latitude, marker.position.longitude)
         //Toast.makeText(this, "Clicked location is " + markerName, Toast.LENGTH_SHORT).show()
+
+
 
         val cc : com.google.android.material.card.MaterialCardView = findViewById<com.google.android.material.card.MaterialCardView>(R.id.cardLocalonMap)
         cc.setVisibility(com.google.android.material.card.MaterialCardView.VISIBLE)
