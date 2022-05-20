@@ -1,127 +1,399 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".MainActivity">
+    android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/Destinos"
-        android:layout_margin="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="32dp"
-        android:text="Destinos: "/>
-
-    <Button
-        android:id="@+id/searchView"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="16dp"
-        android:text="Pesquisar"
-        android:textSize="20dp"
-        android:onClick="search"
-        android:backgroundTint="#AAAAAA"
-        />
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Estacionamentos próximos: "
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="160dp"
-        android:layout_marginStart="16dp"
-        android:textColor="@color/black"
-        android:textSize="25dp"></TextView>
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card1"
-
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="220dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="#DDDDDD"
-        app:cardCornerRadius="15dp">
 
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Parque 1"
-            android:textColor="#555555"
+            android:id="@+id/Destinos"
+            android:layout_margin="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="32dp"
+            android:text="Destinos: "/>
 
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="16dp"
-            android:textSize="30dp"></TextView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Pago"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginStart="16dp"
-            android:textSize="20dp"></TextView>
-
-        <ImageView
-                android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/viana_1"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="230dp"
-            ></ImageView>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_marginStart="16dp"
-        android:layout_below="@id/card1"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="#DDDDDD"
-        app:cardCornerRadius="15dp">
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Parque 2"
-            android:textColor="#555555"
-
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="16dp"
-            android:textSize="30dp"></TextView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Pago"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginStart="16dp"
-            android:textSize="20dp"></TextView>
-
-        <ImageView
+        <CheckBox
+            android:id="@+id/Pago"
             android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/viana_2"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="230dp"
-            ></ImageView>
+            android:layout_height="40dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="20dp"
+            android:text="Pago"
+            ></CheckBox>
 
-    </androidx.cardview.widget.CardView>
+        <CheckBox
+            android:id="@+id/Gratuito"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="60dp"
+            android:layout_toRightOf="@+id/Pago"
+            android:text="Gratuito"
+            ></CheckBox>
+
+        <CheckBox
+            android:id="@+id/Sub"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="60dp"
+            android:layout_toRightOf="@+id/Gratuito"
+            android:text="Subterrâneo"
+            ></CheckBox>
+
+        <CheckBox
+            android:id="@+id/Ar"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="60dp"
+            android:layout_toRightOf="@+id/Sub"
+            android:text="Ar Livre"
+            ></CheckBox>
+
+
+        <CheckBox
+            android:id="@+id/Gravidas"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/Pago"
+            android:layout_marginLeft="100dp"
+            android:text="Gravidas"
+            ></CheckBox>
+
+        <CheckBox
+            android:id="@+id/Deficientes"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/Pago"
+            android:layout_toRightOf="@+id/Gravidas"
+            android:text="Deficientes"
+            ></CheckBox>
 
 
 
-</RelativeLayout>
+
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="140dp"
+            app:cardCornerRadius="20dp"
+            android:padding="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_margin="10dp"
+                    android:id="@+id/localDestino"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:text="Gil Eanes"/>
+
+                <TextView
+                    android:layout_below="@+id/localDestino"
+                    android:layout_alignStart="@+id/localDestino"
+                    android:id="@+id/descrDestino"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:text="Gratuito"/>
+
+                <ImageView
+                    android:id="@+id/imagemDestino"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="100dp"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/prq1"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="260dp"
+            app:cardCornerRadius="20dp"
+            android:padding="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_margin="10dp"
+                    android:id="@+id/localDestino1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:text="Viana do Castelo"/>
+
+                <TextView
+                    android:layout_below="@+id/localDestino1"
+                    android:layout_alignStart="@+id/localDestino1"
+                    android:id="@+id/descrDestino1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:text="Parque2"/>
+
+                <ImageView
+                    android:id="@+id/imagemDestino1"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="100dp"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/prq2"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="380dp"
+            app:cardCornerRadius="20dp"
+            android:padding="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_margin="10dp"
+                    android:id="@+id/localDestino2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:text="Viana do Castelo"/>
+
+                <TextView
+                    android:layout_below="@+id/localDestino2"
+                    android:layout_alignStart="@+id/localDestino2"
+                    android:id="@+id/descrDestino2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:text="Parque2"/>
+
+                <ImageView
+                    android:id="@+id/imagemDestino2"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="100dp"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/prq3"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="500dp"
+            app:cardCornerRadius="20dp"
+            android:padding="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_margin="10dp"
+                    android:id="@+id/localDestino3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:text="Viana do Castelo"/>
+
+                <TextView
+                    android:layout_below="@+id/localDestino3"
+                    android:layout_alignStart="@+id/localDestino3"
+                    android:id="@+id/descrDestino3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:text="Parque2"/>
+
+                <ImageView
+                    android:id="@+id/imagemDestino3"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="100dp"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/prq4"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="620dp"
+            app:cardCornerRadius="20dp"
+            android:padding="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_margin="10dp"
+                    android:id="@+id/localDestino4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:text="Viana do Castelo"/>
+
+                <TextView
+                    android:layout_below="@+id/localDestino4"
+                    android:layout_alignStart="@+id/localDestino4"
+                    android:id="@+id/descrDestino4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:text="Parque2"/>
+
+                <ImageView
+                    android:id="@+id/imagemDestino4"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="100dp"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/prq5"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="740dp"
+            app:cardCornerRadius="20dp"
+            android:padding="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_margin="10dp"
+                    android:id="@+id/localDestino5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:text="Viana do Castelo"/>
+
+                <TextView
+                    android:layout_below="@+id/localDestino5"
+                    android:layout_alignStart="@+id/localDestino5"
+                    android:id="@+id/descrDestino5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:text="Parque2"/>
+
+                <ImageView
+                    android:id="@+id/imagemDestino5"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="100dp"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/prq5"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
+
+        <LinearLayout
+            android:id="@+id/toolbar"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentEnd="true"
+            android:layout_width="match_parent"
+            android:background="@color/black"
+            android:paddingTop="1dp"
+            android:layout_height="40dp"
+            android:translationZ="90dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_margin="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:onClick="Back"
+                    android:src="@drawable/back"/>
+
+                <ImageView
+                    android:layout_margin="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:onClick="Search"
+                    android:src="@drawable/search"/>
+
+                <ImageView
+                    android:layout_margin="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:src="@drawable/avatar"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</ScrollView>
+
+
+
+
+
+
+
+
+
+
+

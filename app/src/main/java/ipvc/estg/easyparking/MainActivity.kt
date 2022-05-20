@@ -11,8 +11,4 @@ class MainActivity : AppCompatActivity() {
             setContentView(R.layout.activity_pesquisa)
         }
 
-    fun search(view: View?) {
-        val intent = Intent(this, ListaPesquisa::class.java)
-        startActivity(intent)
-    }
     }
