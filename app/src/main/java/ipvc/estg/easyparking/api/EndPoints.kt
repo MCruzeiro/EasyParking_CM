@@ -16,7 +16,16 @@ interface EndPoints {
     fun getParques(): Call<List<Parque>>
 
     @GET("parques/{id}")
-    fun getParqueById(@Path("id") id: Int): Call<Parque>
+    fun getParqueById(@Path("id") id : Int): Call<Parque>
+
+    @GET("parques/1")
+    fun getParque1(): Call<List<Parque>>
+
+    @GET("parques/2")
+    fun getParque2(): Call<List<Parque>>
+
+    @GET("parques/3")
+    fun getParque3(): Call<List<Parque>>
 
 }
 

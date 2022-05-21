@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.Looper
 import android.util.Log
 import android.view.View
+import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -51,6 +52,9 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
     var end = LatLng(0.0,0.0)
     private var polylines: List<Polyline>? = null
     var me = 0
+
+    val pl: MutableList<Parque> = mutableListOf()
+    val parquesList: List<Parque> = pl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -197,23 +201,46 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
         // on marker click we are getting the title of our marker
         // which is clicked and displaying it in a toast message.
         var markerName = marker.title
-
+        Log.d("****", marker.id)
 
         end= LatLng(marker.position.latitude, marker.position.longitude)
         //Toast.makeText(this, "Clicked location is " + markerName, Toast.LENGTH_SHORT).show()
 
-        /*
+
+
         val request = ServiceBuilder.buildService(EndPoints::class.java)
-        val call = request.getParques()
+
+        var call = request.getParque1()
+
+        if(marker.id=="m0"){
+            call = request.getParque1()
+        }
+        if(marker.id=="m1"){
+            call = request.getParque2()
+        }
+        if(marker.id=="m2"){
+            call = request.getParque3()
+        }
+
         var nome = "nada"
         call.enqueue(object : Callback<List<Parque>> {
             override fun onResponse(call: Call<List<Parque>>, response: Response<List<Parque>>) {
                 if (response.isSuccessful) {
                     val parques = response.body()!!
                     for (parque in parques) {
-                        if(parque.id.toString().toInt()===marker.id.toInt()){
                             nome= parque.nome_parque
-                        }
+
+                        //preco
+                        val preco : TextView = findViewById<TextView>(R.id.precoOnMap)
+                        preco.text = isPaid(parque.pago.toInt())
+
+                        //aberto
+                        val aberto : TextView = findViewById<TextView>(R.id.horaOnMap)
+                        aberto.text = is24h(parque.abertoDiaInteiro.toInt())
+
+                        //Descricao
+                        val descr : TextView = findViewById<TextView>(R.id.caracteristicasOnMap)
+                        descr.text = isUnderground(parque.subterraneo.toInt()) + isIncapacitated(parque.incapacidade.toInt())
                     }
                     Log.d("****", nome)
                 }
@@ -225,24 +252,23 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
             }
         })
 
-////////////////////////////////////////////////////OUTRO EXEMPLO
-        val request = ServiceBuilder.buildService(EndPoints::class.java)
-        val call = request.getUserById(4) // estaticamente o valor 2. deverá depois passar a ser dinamico
 
-        call.enqueue(object : Callback<User>{
-            override fun onResponse(call: Call<User>, response: Response<User>) {
+////////////////////////////////////////////////////OUTRO EXEMPLO
+        /*
+        val request = ServiceBuilder.buildService(EndPoints::class.java)
+        val call = request.getParqueById(2) // estaticamente o valor 2. deverá depois passar a ser dinamico
+        call.enqueue(object : Callback<Parque>{
+            override fun onResponse(call: Call<Parque>, response: Response<Parque>) {
                 if (response.isSuccessful){
-                    val c: User = response.body()!!
-                    Toast.makeText(this@MainActivity, c.email, Toast.LENGTH_SHORT).show()
+                    val c: Parque = response.body()!!
+                    Log.d("****",  c.nome_parque)
                 }
             }
-
-            override fun onFailure(call: Call<User>, t: Throwable) {
-                Toast.makeText(this@MainActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+            override fun onFailure(call: Call<Parque>, t: Throwable) {
+                Log.d("****", "${t.message}")
             }
         })
-
-          */
+        */
 
         val cc : com.google.android.material.card.MaterialCardView = findViewById<com.google.android.material.card.MaterialCardView>(R.id.cardLocalonMap)
         cc.setVisibility(com.google.android.material.card.MaterialCardView.VISIBLE)
@@ -400,5 +426,134 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
     fun fecharClickFiltros(view: android.view.View) {
         val c1 : com.google.android.material.card.MaterialCardView = findViewById<com.google.android.material.card.MaterialCardView>(R.id.filterCard)
         c1.setVisibility(com.google.android.material.card.MaterialCardView.GONE)
+
+        // recycler view
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
+
+        val request = ServiceBuilder.buildService(EndPoints::class.java)
+        val call = request.getParques()
+
+        call.enqueue(object : Callback<List<Parque>> {
+            override fun onResponse(call: Call<List<Parque>>, response: Response<List<Parque>>) {
+                if (response.isSuccessful){
+                    recyclerView.apply {
+                        setHasFixedSize(true)
+                        layoutManager = LinearLayoutManager(this@MapsActivity)
+                        adapter = ParqueAdapter(response.body()!!)
+                    }
+                }
+            }
+            override fun onFailure(call: Call<List<Parque>>, t: Throwable) {
+                Toast.makeText(this@MapsActivity, "${t.message}", Toast.LENGTH_LONG).show()
+            }
+        })
+
+        val cb : CheckBox = findViewById<CheckBox>(R.id.Gratuito)
+        cb.isChecked= false
+        val cb2 : CheckBox = findViewById<CheckBox>(R.id.Pago)
+        cb2.isChecked= false
+        val cb3 : CheckBox = findViewById<CheckBox>(R.id.Ar)
+        cb3.isChecked= false
+        val cb4 : CheckBox = findViewById<CheckBox>(R.id.Sub)
+        cb4.isChecked= false
+        val cb5 : CheckBox = findViewById<CheckBox>(R.id.Gravidas)
+        cb5.isChecked= false
+    }
+
+    fun isPaid(i: Int): String {
+        if (i==0){
+            return "Grátis"
+        } else
+            return "2€"
+    }
+
+    fun isUnderground(i: Int): String{
+        if (i==0)
+            return "Ar-Livre; "
+        else
+            return "Subterrâneo; "
+    }
+
+    fun is24h(i: Int): String{
+        if (i==0)
+            return "Aberto apenas durante o dia"
+        else
+            return "Aberto o dia todo"
+    }
+
+    fun isIncapacitated(i: Int): String{
+        if (i==0)
+            return ""
+        else
+            return "Para pessoas incapacitadas; "
+    }
+
+    fun aplicaFiltrosClick(view: android.view.View) {
+        // recycler view
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
+
+        val request = ServiceBuilder.buildService(EndPoints::class.java)
+        val call = request.getParques()
+
+        pl.clear()
+
+        val cbP : CheckBox = findViewById<CheckBox>(R.id.Pago)
+        val cbS : CheckBox = findViewById<CheckBox>(R.id.Sub)
+        val cbI : CheckBox = findViewById<CheckBox>(R.id.Gravidas)
+
+        var valor=0
+        var estilo=0
+        var incapacidade=0
+
+        if(cbP.isChecked){
+        valor=1
+        }
+        if(cbS.isChecked){
+        estilo=1
+        }
+        if(cbI.isChecked){
+        incapacidade=1
+        }
+
+        call.enqueue(object : Callback<List<Parque>> {
+
+            override fun onResponse(call: Call<List<Parque>>, response: Response<List<Parque>>) {
+                if (response.isSuccessful){
+                    val parques = response.body()!!
+
+                    for (parque in parques) {
+                        if(parque.pago.toInt()==valor && parque.subterraneo.toInt()==estilo && parque.incapacidade.toInt()==incapacidade){
+                            pl.add(parque)
+                        }
+                    }
+                    recyclerView.apply {
+                        setHasFixedSize(true)
+                        layoutManager = LinearLayoutManager(this@MapsActivity)
+                        adapter = ParqueAdapter(parquesList)
+                    }
+                }
+            }
+            override fun onFailure(call: Call<List<Parque>>, t: Throwable) {
+                Toast.makeText(this@MapsActivity, "${t.message}", Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+
+    fun cbPago(view: android.view.View) {
+        val cb : CheckBox = findViewById<CheckBox>(R.id.Gratuito)
+        cb.isChecked= false
+    }
+    fun cbGratuito(view: android.view.View) {
+        val cb : CheckBox = findViewById<CheckBox>(R.id.Pago)
+        cb.isChecked= false
+    }
+    fun cbSub(view: android.view.View) {
+        val cb : CheckBox = findViewById<CheckBox>(R.id.Ar)
+        cb.isChecked= false
+    }
+    fun cbArLivre(view: android.view.View) {
+        val cb : CheckBox = findViewById<CheckBox>(R.id.Sub)
+        cb.isChecked= false
     }
 }
+
