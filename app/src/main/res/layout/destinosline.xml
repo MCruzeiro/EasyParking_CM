@@ -30,9 +30,9 @@
             android:id="@+id/descrDestino"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
             android:text="Parque1"/>
 
+            <!--
             <ImageView
                 android:id="@+id/imagemDestino"
                 android:layout_alignParentRight="true"
@@ -40,6 +40,7 @@
                 android:layout_margin="10dp"
                 android:layout_height="wrap_content"
                 android:src="@drawable/prq1"/>
+            -->
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 

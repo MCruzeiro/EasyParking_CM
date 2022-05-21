@@ -13,6 +13,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.directions.route.*
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -21,6 +23,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.android.material.snackbar.Snackbar
+import ipvc.estg.easyparking.adapter.ParqueAdapter
 import ipvc.estg.easyparking.api.EndPoints
 import ipvc.estg.easyparking.api.Parque
 import ipvc.estg.easyparking.api.ServiceBuilder
@@ -80,6 +83,28 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
                 }
             }
         }
+
+        // recycler view
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
+
+        val request = ServiceBuilder.buildService(EndPoints::class.java)
+        val call = request.getParques()
+
+        call.enqueue(object : Callback<List<Parque>> {
+            override fun onResponse(call: Call<List<Parque>>, response: Response<List<Parque>>) {
+                if (response.isSuccessful){
+                    recyclerView.apply {
+                        setHasFixedSize(true)
+                        layoutManager = LinearLayoutManager(this@MapsActivity)
+                        adapter = ParqueAdapter(response.body()!!)
+                    }
+                }
+            }
+            override fun onFailure(call: Call<List<Parque>>, t: Throwable) {
+                Toast.makeText(this@MapsActivity, "${t.message}", Toast.LENGTH_LONG).show()
+            }
+        })
+
     }
 
     private fun createLocationRequest() {
@@ -370,5 +395,10 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
     fun filtrosClick(view: android.view.View) {
         val c1 : com.google.android.material.card.MaterialCardView = findViewById<com.google.android.material.card.MaterialCardView>(R.id.filterCard)
         c1.setVisibility(com.google.android.material.card.MaterialCardView.VISIBLE)
+    }
+
+    fun fecharClickFiltros(view: android.view.View) {
+        val c1 : com.google.android.material.card.MaterialCardView = findViewById<com.google.android.material.card.MaterialCardView>(R.id.filterCard)
+        c1.setVisibility(com.google.android.material.card.MaterialCardView.GONE)
     }
 }

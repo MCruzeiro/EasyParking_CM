@@ -40,6 +40,107 @@
         android:visibility="gone"
         android:layout_height="match_parent">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <TextView
+            android:id="@+id/Destinos"
+            android:layout_margin="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="32dp"
+            android:text="Destinos: "/>
+
+            <Button
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FF0000"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:onClick="fecharClickFiltros"
+                android:text="Sair"/>
+
+            <LinearLayout
+                android:id="@+id/llsec1"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/Destinos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/Pago"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pago"
+            ></CheckBox>
+
+        <CheckBox
+            android:id="@+id/Gratuito"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gratuito"
+            ></CheckBox>
+
+        <CheckBox
+            android:id="@+id/Sub"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Subterrãneo"
+            ></CheckBox>
+
+        <CheckBox
+            android:id="@+id/Ar"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ar Livre"
+            ></CheckBox>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/llsec2"
+                android:layout_below="@+id/llsec1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/Gravidas"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gravidas"
+            ></CheckBox>
+
+        <CheckBox
+            android:id="@+id/Deficientes"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deficientes"
+            ></CheckBox>
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_below="@+id/llsec2"
+                android:id="@+id/recyclerview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                tools:listitem="@layout/destinosline" />
+
+        </RelativeLayout>
+
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
@@ -53,6 +154,7 @@
         android:layout_width="match_parent"
         android:layout_height="500dp"
         card_view:cardCornerRadius="25dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
