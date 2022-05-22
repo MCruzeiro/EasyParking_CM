@@ -284,6 +284,7 @@
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:backgroundTint="@color/purple_500"
                 android:onClick="direcoesClick"
                 android:text="@string/directions"/>
 
