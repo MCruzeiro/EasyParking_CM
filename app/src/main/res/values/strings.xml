@@ -3,4 +3,8 @@
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_maps2">Map</string>
     <string name="destinosfav">Favorite Destinations</string>
+    <string name="preference_file_key">file1</string>
+    <string name="preference_file_key2">file2</string>
+    <string name="nomeUtilizador">name</string>
+    <string name="emailUtilizador">email</string>
 </resources>
