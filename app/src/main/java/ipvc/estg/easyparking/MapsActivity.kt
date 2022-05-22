@@ -105,7 +105,8 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
                 }
             }
             override fun onFailure(call: Call<List<Parque>>, t: Throwable) {
-                Toast.makeText(this@MapsActivity, "${t.message}", Toast.LENGTH_LONG).show()
+                //Toast.makeText(this@MapsActivity, "${t.message}", Toast.LENGTH_LONG).show()
+                Log.d("****", "${t.message}")
             }
         })
 
@@ -184,7 +185,7 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
             }
 
             override fun onFailure(call: Call<List<Parque>>, t: Throwable) {
-                    Toast.makeText(this@MapsActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@MapsActivity, "${t.message}", Toast.LENGTH_SHORT).show()
                 Log.d("****", "${t.message}")
             }
         })
@@ -262,7 +263,7 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
             }
 
             override fun onFailure(call: Call<List<Parque>>, t: Throwable) {
-                Toast.makeText(this@MapsActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@MapsActivity, "${t.message}", Toast.LENGTH_SHORT).show()
                 Log.d("****", "${t.message}")
             }
         })
@@ -459,7 +460,8 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
                 }
             }
             override fun onFailure(call: Call<List<Parque>>, t: Throwable) {
-                Toast.makeText(this@MapsActivity, "${t.message}", Toast.LENGTH_LONG).show()
+            // Toast.makeText(this@MapsActivity, "${t.message}", Toast.LENGTH_LONG).show()
+                Log.d("****", "${t.message}")
             }
         })
 
@@ -549,7 +551,8 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
                 }
             }
             override fun onFailure(call: Call<List<Parque>>, t: Throwable) {
-                Toast.makeText(this@MapsActivity, "${t.message}", Toast.LENGTH_LONG).show()
+            // Toast.makeText(this@MapsActivity, "${t.message}", Toast.LENGTH_LONG).show()
+                Log.d("****", "${t.message}")
             }
         })
     }
