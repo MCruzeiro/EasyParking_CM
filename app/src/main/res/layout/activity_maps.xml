@@ -285,6 +285,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:onClick="direcoesClick"
+                android:backgroundTint="@color/purple_500"
                 android:text="@string/directions"/>
 
             <Button
