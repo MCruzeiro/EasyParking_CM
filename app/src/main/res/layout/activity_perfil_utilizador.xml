@@ -82,15 +82,6 @@
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 
-    <TextView
-        android:layout_margin="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/llUtilizador"
-        android:text="@string/destinosfav"
-        android:layout_centerHorizontal="true"
-        android:textSize="38dp"
-        android:textColor="@color/black"/>
 
     <LinearLayout
         android:id="@+id/toolbar"
@@ -101,40 +92,49 @@
         android:paddingTop="1dp"
         android:layout_height="40dp">
 
-    <LinearLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_margin="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:onClick="Back"
+                android:src="@drawable/back"/>
+
+            <ImageView
+                android:layout_margin="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:onClick="Search"
+                android:src="@drawable/search"/>
+
+            <ImageView
+                android:layout_margin="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:src="@drawable/avatar"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/white"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_margin="3dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:onClick="Back"
-            android:src="@drawable/back"/>
-
-        <ImageView
-            android:layout_margin="3dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:onClick="Search"
-            android:src="@drawable/search"/>
-
-        <ImageView
-            android:layout_margin="3dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:src="@drawable/avatar"/>
-
-    </LinearLayout>
-    </LinearLayout>
-
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Terminar Sessão"
+        android:backgroundTint="#ff0000"
+        android:layout_below="@+id/llUtilizador"
+        android:onClick="sair"
+        />
 
 </RelativeLayout>

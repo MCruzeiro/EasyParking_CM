@@ -7,31 +7,26 @@
     tools:context=".MainActivity">
 
 
-    <TextView
-        android:id="@+id/easyparking"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="EasyParking"
-        android:textSize="45dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="60dp"></TextView>
+        android:src="@drawable/logo"
+        />
+<!--    <TextView-->
+<!--        android:id="@+id/easyparking"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="EasyParking"-->
+<!--        android:textSize="45dp"-->
+<!--        android:layout_marginLeft="40dp"-->
+<!--        android:layout_marginTop="60dp"></TextView>-->
 
 
-    <TextView
-        android:id="@+id/registo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/easyparking"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="40dp"
-        android:text="Bem-vindo"
-        android:textSize="30dp"></TextView>
 
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_centerInParent="true"
         android:hint="E-mail" />
 
@@ -42,27 +37,41 @@
         android:layout_marginTop="10dp"
         android:layout_centerInParent="true"
         android:layout_below="@+id/etEmail"
-        android:hint="Palavra-passe" />
-
+        android:hint="Palavra-passe"
+        android:inputType="textPassword"/>
 
     <TextView
-        android:id="@+id/criarConta"
+        android:id="@+id/txtLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/etPass"
-        android:layout_marginLeft="40dp"
         android:layout_marginTop="70dp"
         android:text="Iniciar Sessão"
-        android:textSize="40dp"
-        android:textStyle="bold"></TextView>
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_alignStart="@id/etEmail"/>
 
-    <ImageView
-        android:layout_width="71dp"
-        android:layout_height="186dp"
-        android:layout_below="@+id/criarConta"
-        android:layout_marginTop="-120dp"
-        android:layout_marginLeft="300dp"
-        android:src="@drawable/seta"></ImageView>
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/seta"
+        android:layout_below="@+id/etPass"
+        android:layout_toEndOf="@id/txtLogin"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="70dp"
+        />
+
+    <Button
+        android:theme="@style/Button.Black"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnLogin"
+        android:layout_alignStart="@id/txtLogin"
+        android:layout_marginTop="40dp"
+        android:text="Registe-se"
+        android:onClick="registar"
+        />
 
 
 </RelativeLayout>
