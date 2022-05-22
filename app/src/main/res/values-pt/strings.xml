@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EasyParking</string>
+    <string name="destinosfav">Destinos favoritos</string>
+    <string name="title_activity_maps2">Mapa</string>
+    <string name="title_activity_maps">Mapa</string>
+    <string name="preference_file_key">file1</string>
+    <string name="preference_file_key2">file2</string>
+    <string name="nomeUtilizador">nome</string>
+    <string name="emailUtilizador">email</string>
+    <string name="login">Iniciar Sessão</string>
+    <string name="password">Palavra-Passe</string>
+    <string name="new_account">Registe-se</string>
+    <string name="end_session">Terminar Sessão</string>
+    <string name="name">Nome</string>
+    <string name="destinations">Destinos:</string>
+    <string name="leave">Sair</string>
+    <string name="paid">Pago</string>
+    <string name="free">Grátis</string>
+    <string name="underground">Subterrâneo</string>
+    <string name="open_air">Ar-Livre</string>
+    <string name="disable">Incapacidades</string>
+    <string name="aply_filters">Aplicar Filtros</string>
+    <string name="directions">Direções</string>
+    <string name="details">Detalhes</string>
+</resources>

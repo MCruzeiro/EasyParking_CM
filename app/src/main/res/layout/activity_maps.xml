@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MapsActivity">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MapsActivity" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/filterButton"
+        android:layout_margin="10dp"
+        android:clickable="true"
+        android:onClick="filtrosClick"
+        android:layout_alignParentRight="true"
+        app:strokeColor="@color/black"
+        app:strokeWidth="1dp"
+        android:layout_width="51dp"
+        android:layout_height="51dp">
+        <ImageView
+            android:padding="4dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/search"/>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- CARD DOS FILTROS-->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/filterCard"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="40dp"
+        android:visibility="gone"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <TextView
+            android:id="@+id/Destinos"
+            android:layout_margin="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="32dp"
+            android:text="@string/destinations"/>
+
+            <Button
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FF0000"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:onClick="fecharClickFiltros"
+                android:text="@string/leave"/>
+
+            <LinearLayout
+                android:id="@+id/llsec1"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/Destinos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/Pago"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/paid"
+            android:onClick="cbPago"
+            ></CheckBox>
+
+        <CheckBox
+            android:id="@+id/Gratuito"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/free"
+            android:onClick="cbGratuito"
+            ></CheckBox>
+
+        <CheckBox
+            android:id="@+id/Sub"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/underground"
+            android:onClick="cbSub"
+            ></CheckBox>
+
+        <CheckBox
+            android:id="@+id/Ar"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/open_air"
+            android:onClick="cbArLivre"
+            ></CheckBox>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/llsec2"
+                android:layout_below="@+id/llsec1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/Gravidas"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/disable"
+            ></CheckBox>
+
+                <Button
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:backgroundTint="#33FF4C"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:onClick="aplicaFiltrosClick"
+                    android:text="@string/aply_filters"/>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_below="@+id/llsec2"
+                android:id="@+id/recyclerview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                tools:listitem="@layout/destinosline" />
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:visibility="gone"
+        android:layout_margin="15dp"
+        android:id="@+id/cardLocalonMap"
+        card_view:strokeWidth="4dp"
+        android:layout_centerInParent="true"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        card_view:cardCornerRadius="25dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imagemOnMap"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:src="@drawable/prq1" />
+
+        <TextView
+            android:layout_below="@id/imagemOnMap"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/localDestinoOnMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:text="Viana do Castelo"/>
+
+            <TextView
+                android:layout_below="@+id/localDestinoOnMap"
+                android:layout_alignStart="@+id/localDestinoOnMap"
+                android:id="@+id/descrDestinoOnMap"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="Parque1"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_below="@id/imagemOnMap"
+                android:layout_marginTop="15dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="90dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+             <TextView
+                 android:background="@color/teal_200"
+                 android:id="@+id/precoOnMap"
+                 android:textAlignment="center"
+                 android:layout_width="50dp"
+                 android:layout_height="wrap_content"
+                 android:text="2$"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/descrDestinoOnMap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <com.google.android.material.card.MaterialCardView
+                    card_view:strokeColor="@color/black"
+                    card_view:strokeWidth="1dp"
+                    app:cardCornerRadius="7dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="100dp"
+                    android:layout_height="90dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    <TextView
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/Det"
+                        android:layout_marginTop="3dp"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/details" />
+                    <TextView
+                        android:id="@+id/caracteristicasOnMap"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@id/Det"
+                        android:textAlignment="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Pago,...."/>
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    card_view:strokeColor="@color/black"
+                    card_view:strokeWidth="1dp"
+                    app:cardCornerRadius="7dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="100dp"
+                    android:layout_height="90dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_centerHorizontal="true"
+                            android:id="@+id/horaOnMap"
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:text="Fecha ás 22h" />
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_height="wrap_content">
+            <Button
+                android:layout_margin="3dp"
+                android:layout_weight="15"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:onClick="direcoesClick"
+                android:text="@string/directions"/>
+
+            <Button
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FF0000"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:onClick="fecharClick"
+                android:text="@string/leave"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:id="@+id/toolbar"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:background="@color/black"
+        android:paddingTop="1dp"
+        android:layout_height="40dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_margin="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:onClick="Back"
+                android:src="@drawable/back"/>
+
+            <ImageView
+                android:layout_margin="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:src="@drawable/search"/>
+
+            <ImageView
+                android:layout_margin="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:onClick="Perfil"
+                android:src="@drawable/avatar"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
