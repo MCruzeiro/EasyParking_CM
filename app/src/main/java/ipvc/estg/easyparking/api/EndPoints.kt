@@ -1,8 +1,7 @@
 package ipvc.estg.easyparking.api
 
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface EndPoints {
 
@@ -26,6 +25,26 @@ interface EndPoints {
 
     @GET("parques/3")
     fun getParque3(): Call<List<Parque>>
+
+    @GET("parques/4")
+    fun getParque4(): Call<List<Parque>>
+
+    @GET("parques/5")
+    fun getParque5(): Call<List<Parque>>
+
+    @GET("parques/6")
+    fun getParque6(): Call<List<Parque>>
+
+    @GET("parques/7")
+    fun getParque7(): Call<List<Parque>>
+
+    @GET("parques/8")
+    fun getParque8(): Call<List<Parque>>
+
+    @FormUrlEncoded
+    @POST("utilizador_post")
+    fun userRegister(@Field("email") email: String?,@Field("nome") nome: String?,@Field("password") pass: String?): Call<User>
+
 
 }
 
