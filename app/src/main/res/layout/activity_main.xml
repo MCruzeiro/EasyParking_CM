@@ -37,7 +37,7 @@
         android:layout_marginTop="10dp"
         android:layout_centerInParent="true"
         android:layout_below="@+id/etEmail"
-        android:hint="Palavra-passe"
+        android:hint="@string/password"
         android:inputType="textPassword"/>
 
     <TextView
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/etPass"
         android:layout_marginTop="70dp"
-        android:text="Iniciar Sessão"
+        android:text="@string/login"
         android:textSize="30dp"
         android:textStyle="bold"
         android:layout_alignStart="@id/etEmail"/>
@@ -69,7 +69,7 @@
         android:layout_below="@id/btnLogin"
         android:layout_alignStart="@id/txtLogin"
         android:layout_marginTop="40dp"
-        android:text="Registe-se"
+        android:text="@string/new_account"
         android:onClick="registar"
         />
 

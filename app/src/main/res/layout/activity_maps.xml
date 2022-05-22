@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="32dp"
-            android:text="Destinos: "/>
+            android:text="@string/destinations"/>
 
             <Button
                 android:layout_alignParentRight="true"
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:onClick="fecharClickFiltros"
-                android:text="Sair"/>
+                android:text="@string/leave"/>
 
             <LinearLayout
                 android:id="@+id/llsec1"
@@ -77,7 +77,7 @@
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pago"
+            android:text="@string/paid"
             android:onClick="cbPago"
             ></CheckBox>
 
@@ -86,7 +86,7 @@
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gratuito"
+            android:text="@string/free"
             android:onClick="cbGratuito"
             ></CheckBox>
 
@@ -95,7 +95,7 @@
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Subterrâneo"
+            android:text="@string/underground"
             android:onClick="cbSub"
             ></CheckBox>
 
@@ -104,7 +104,7 @@
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ar Livre"
+            android:text="@string/open_air"
             android:onClick="cbArLivre"
             ></CheckBox>
 
@@ -123,7 +123,7 @@
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Incapacitados"
+            android:text="@string/disable"
             ></CheckBox>
 
                 <Button
@@ -134,7 +134,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:onClick="aplicaFiltrosClick"
-                    android:text="Aplicar Filtros"/>
+                    android:text="@string/aply_filters"/>
 
             </LinearLayout>
 
@@ -234,7 +234,7 @@
                         android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Detalhes" />
+                        android:text="@string/details" />
                     <TextView
                         android:id="@+id/caracteristicasOnMap"
                         android:layout_centerHorizontal="true"
@@ -285,7 +285,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:onClick="direcoesClick"
-                android:text="Direções"/>
+                android:text="@string/directions"/>
 
             <Button
                 android:layout_margin="3dp"
@@ -294,7 +294,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:onClick="fecharClick"
-                android:text="Sair"/>
+                android:text="@string/leave"/>
             </LinearLayout>
 
         </RelativeLayout>

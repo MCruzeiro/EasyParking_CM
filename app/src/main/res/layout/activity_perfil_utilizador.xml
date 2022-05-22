@@ -131,7 +131,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="Terminar Sessão"
+        android:text="@string/end_session"
         android:backgroundTint="#ff0000"
         android:layout_below="@+id/llUtilizador"
         android:onClick="sair"

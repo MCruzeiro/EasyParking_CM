@@ -7,4 +7,19 @@
     <string name="preference_file_key2">file2</string>
     <string name="nomeUtilizador">name</string>
     <string name="emailUtilizador">email</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="new_account">Create Account</string>
+    <string name="end_session">End Session</string>
+    <string name="name">Name</string>
+    <string name="destinations">Destinations:</string>
+    <string name="leave">Close</string>
+    <string name="paid">Paid</string>
+    <string name="free">Free</string>
+    <string name="underground">Underground</string>
+    <string name="open_air">Open Air</string>
+    <string name="disable">disabilities</string>
+    <string name="aply_filters">Aply Filters</string>
+    <string name="directions">Go to</string>
+    <string name="details">Details</string>
 </resources>
