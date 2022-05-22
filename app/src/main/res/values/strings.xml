@@ -18,8 +18,8 @@
     <string name="free">Free</string>
     <string name="underground">Underground</string>
     <string name="open_air">Open Air</string>
-    <string name="disable">disabilities</string>
-    <string name="aply_filters">Aply Filters</string>
+    <string name="disable">Disabilities</string>
+    <string name="aply_filters">Apply Filters</string>
     <string name="directions">Go to</string>
     <string name="details">Details</string>
 </resources>
