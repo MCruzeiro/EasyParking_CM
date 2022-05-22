@@ -4,8 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/anari/AndroidStudioProjects/EasyParking_CM/app/src/main/res/layout/activity_criar_conta.xml" value="0.19166666666666668" />
-        <entry key="..\:/Users/anari/AndroidStudioProjects/EasyParking_CM/app/src/main/res/layout/activity_login.xml" value="0.20572916666666666" />
+        <entry key="..\:/Users/anari/AndroidStudioProjects/EasyParking_CM/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/anari/AndroidStudioProjects/EasyParking_CM/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/anari/AndroidStudioProjects/EasyParking_CM/app/src/main/res/layout/activity_maps.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

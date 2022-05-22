@@ -30,8 +30,8 @@
         android:id="@+id/etEmail"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
         android:hint="E-mail" />
 
     <EditText
@@ -61,7 +61,9 @@
         android:layout_below="@+id/criarConta"
         android:layout_marginTop="-120dp"
         android:layout_marginLeft="300dp"
-        android:src="@drawable/seta"></ImageView>
+        android:src="@drawable/seta"
+        android:clickable="true"
+        android:onClick="login"></ImageView>
 
 
 
