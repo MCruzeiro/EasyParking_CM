@@ -221,6 +221,21 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
         if(marker.id=="m2"){
             call = request.getParque3()
         }
+        if(marker.id=="m3"){
+            call = request.getParque4()
+        }
+        if(marker.id=="m4"){
+            call = request.getParque5()
+        }
+        if(marker.id=="m5"){
+            call = request.getParque6()
+        }
+        if(marker.id=="m6"){
+            call = request.getParque7()
+        }
+        if(marker.id=="m7"){
+            call = request.getParque8()
+        }
 
         var nome = "nada"
         call.enqueue(object : Callback<List<Parque>> {
