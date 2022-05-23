@@ -338,7 +338,9 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
         return results[0]
     }
 
-    fun Back(view: android.view.View) {}
+    fun Back(view: android.view.View) {
+        System.exit(-1)
+    }
     fun Perfil(view: android.view.View) {
         val intent = Intent(this, PerfilUtilizador::class.java).apply {
         }
