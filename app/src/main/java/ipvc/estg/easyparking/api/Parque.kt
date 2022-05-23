@@ -9,5 +9,6 @@ data class Parque(
     val subterraneo: String,
     val abertoDiaInteiro: String,
     val incapacidade: String,
+    val nVagas: String
 )
 

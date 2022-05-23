@@ -257,6 +257,10 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener, OnMap
                         //Descricao
                         val descr : TextView = findViewById<TextView>(R.id.caracteristicasOnMap)
                         descr.text = isUnderground(parque.subterraneo.toInt()) + isIncapacitated(parque.incapacidade.toInt())
+
+                        //Vagas
+                        val vagas : TextView = findViewById<TextView>(R.id.vagasOnMap)
+                        vagas.text = parque.nVagas.toString()
                     }
                     Log.d("****", nome)
                 }
